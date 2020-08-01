@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <el-container class="min-height">
+    <el-header>
+      <homeHead></homeHead>
+    </el-header>
+    <el-container class="min-height">
+      <el-aside width="200px" class="min-height">
+        <homeAside></homeAside>
+      </el-aside>
+      <el-main class="min-height">
+        <router-view :key="$route.fullPath"></router-view>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import homeAside from '@/components/home/home-aside'
+import homeHead from '@/components/home/home-head'
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
+    homeAside,
+    homeHead
+  },
+  created() {
+
   }
 }
 </script>
+
+<style scoped>
+.min-height {
+  min-height: 100%;
+}
+</style>
