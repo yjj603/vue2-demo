@@ -10,7 +10,7 @@ const obj = {
     },
     server:{
         name:'服务器'
-    }
+    },
 }
 const arr = Object.entries(obj).map(v=>({
     key:v[0],

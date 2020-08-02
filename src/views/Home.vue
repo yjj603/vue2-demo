@@ -25,7 +25,7 @@ export default {
     homeHead
   },
   created() {
-
+    this.$store.dispatch('getOption')
   }
 }
 </script>

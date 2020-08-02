@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>{{ $store.state.pool.obj[$route.params.ci].name }}创建</h4>
+    <h4>{{ $store.state.pool.obj[$route.params.ci].name }}修改</h4>
     <div>
       <el-form ref="form" :inline="true" :model="form" label-width="100px" :rules="$store.state.rules">
         <el-form-item :label="item.value" v-for="(item,index) in $store.state.config[$route.params.ci].create"
@@ -19,17 +19,25 @@
 
 <script>
 export default {
-  name: "create",
+  name: "update",
   data() {
     return {
       form: {}
     }
   },
+  async created() {
+    const {data:data} = await this.$axios.get(`${this.$route.params.ci}/getOne`, {
+      params: {
+        id: this.$route.params.id
+      }
+    })
+    this.form = data
+  },
   methods: {
     onSubmit() {
       this.$refs.form.validate(async (valid) => {
         if (valid) {
-          const data = await this.$axios.post(`${this.$route.params.ci}/create`,
+          const data = await this.$axios.post(`${this.$route.params.ci}/update`,
               this.form
           )
           if (data.code === 200) {

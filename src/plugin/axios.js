@@ -17,14 +17,16 @@ axios.interceptors.response.use(function (response) {
     if (response.data.code !== 200) {
         Message({
             message: '出错了',
-            type: 'warning'
+            type: 'warning',
+            offset:70
         })
     }
     return response.data
 }, function ({response}) {
     Message({
         message: '出错了',
-        type: 'error'
+        type: 'error',
+        offset:70
     })
     // 对响应错误做点什么
     return response
@@ -32,5 +34,6 @@ axios.interceptors.response.use(function (response) {
 export default {
     install: function (Vue) {
         Vue.prototype.$axios = axios
-    }
+    },
+    axios
 }

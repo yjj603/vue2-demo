@@ -20,7 +20,7 @@ const def = {
     },
     params: {
         label: 'name',
-        value: 'id'
+        value: '_id'
     },
 }
 const state = {
@@ -33,6 +33,17 @@ const state = {
     organization: {
         value: '组织名称',
         type: 'select',
+        params: {
+            label: 'name',
+            value: 'name'
+        },
+    },
+    location: {
+        value: '地理位置',
+        type: 'selectRemote',
+        view(item) {
+            return item[this.key] ? item[this.key].name : ''
+        },
     }
 }
 Object.entries(state).forEach(v => {

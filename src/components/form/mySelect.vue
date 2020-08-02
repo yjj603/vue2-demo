@@ -5,7 +5,7 @@
                item.method(value_)
              }" :placeholder="`请选择${item.value}`">
     <el-option v-for="(ite,index) in item.option()"
-               :key="index" :label="item.params?ite[item.params.label]:ite"
+               :key="index" :label="ite[item.params.label]"
                :value="ite[item.params.value]"></el-option>
   </el-select>
 </template>
