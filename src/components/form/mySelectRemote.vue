@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="value_[item.key]._id" size="mini" :remote-method="remoteMethod" :loading="loading"
+  <el-select v-model="model" size="mini" :remote-method="remoteMethod" :loading="loading"
              filterable remote reserve-keyword :placeholder="`请输入${item.value}查询`"
              @change="(val)=>{
              value_[item.key] = val
@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       loading: false,
-      option:[]
+      option:[],
+      model:''
     }
   },
   computed: {
