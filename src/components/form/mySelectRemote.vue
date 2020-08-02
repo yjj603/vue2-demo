@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="value_[item.key]._id" size="mini" :remote-method="remoteMethod" :loading="loading"
+  <el-select v-model="model" size="mini" :remote-method="remoteMethod" :loading="loading"
              filterable remote reserve-keyword :placeholder="`请输入${item.value}查询`"
              @change="(val)=>{
              value_[item.key] = val
@@ -20,12 +20,16 @@ export default {
   data() {
     return {
       loading: false,
-      option:[]
+      option: [],
+      model: ''
     }
   },
   computed: {
-    ciList () {
+    ciList() {
       return this.$store.state.getData[this.item.key]
+    },
+    model_() {
+      return this.value_[this.item.key]
     }
   },
   watch: {
@@ -33,6 +37,12 @@ export default {
       immediate: true,
       handler: function (n) {
         this.option = n
+      }
+    },
+    'moedl_': {
+      immediate: true,
+      handler: function (n) {
+        this.model = n.id || ''
       }
     }
   },
