@@ -1,9 +1,9 @@
 <template>
-  <el-select v-model="value_[item.key]._id" size="mini" :remote-method="remoteMethod" :loading="loading"
+  <el-select v-model="model" size="mini" :remote-method="remoteMethod" :loading="loading"
              filterable remote reserve-keyword :placeholder="`请输入${item.value}查询`"
              @change="(val)=>{
              value_[item.key] = val
-             $emit('input',value_)
+             // $emit('input',value_)
            }">
     <el-option v-for="(ite,index) in option"
                :key="index" :label="ite[item.params.label]"
@@ -42,7 +42,8 @@ export default {
     'moedl_': {
       immediate: true,
       handler: function (n) {
-        this.model = n.id || ''
+        console.log(n)
+        this.model = n ? n.id : ''
       }
     }
   },

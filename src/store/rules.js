@@ -1,6 +1,6 @@
 const blurRequired = {required: true, message: '此项必填', trigger: 'blur'}
-/*const changeRequired = {required: true, message: '此项必填', trigger: 'change'}
-const email = {type: 'email', message: '输入正确的邮箱格式', trigger: 'blur'}
+const changeRequired = {required: true, message: '此项必填', trigger: 'change'}
+/*const email = {type: 'email', message: '输入正确的邮箱格式', trigger: 'blur'}
 const number = {
     validator: function (rule, value, callback) {
         if (!value) {
@@ -15,6 +15,8 @@ const number = {
 }*/
 export default {
     state: {
-        name: [blurRequired]
+        name: [blurRequired],
+        organization:[changeRequired],
+        location:[changeRequired]
     }
 }
