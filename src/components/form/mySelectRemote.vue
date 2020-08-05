@@ -1,10 +1,11 @@
 <template>
   <el-select v-model="model" size="mini" :remote-method="remoteMethod" :loading="loading"
              filterable remote reserve-keyword :placeholder="`请输入${item.value}查询`"
+             :disabled="item.disabled(form)"
              @change="(val)=>{
-             value_[item.key] = val
-             // $emit('input',value_)
-           }">
+               updateForm(item.key,model)
+               item.method()
+             }" clearable>
     <el-option v-for="(ite,index) in option"
                :key="index" :label="ite[item.params.label]"
                :value="ite[item.params.value]"></el-option>
@@ -28,9 +29,6 @@ export default {
     ciList() {
       return this.$store.state.getData[this.item.key]
     },
-    model_() {
-      return this.value_[this.item.key]
-    }
   },
   watch: {
     'ciList': {
@@ -39,11 +37,10 @@ export default {
         this.option = n
       }
     },
-    'moedl_': {
+    'form': {
       immediate: true,
-      handler: function (n) {
-        console.log(n)
-        this.model = n ? n.id : ''
+      handler(n) {
+        this.model = n[this.item.key]?n[this.item.key]._id:''
       }
     }
   },

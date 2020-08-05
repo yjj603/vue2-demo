@@ -1,19 +1,11 @@
 export default {
   props: {
-    value: {},
     item: {}
   },
-  watch: {
-    'value': {
-      immediate: true,
-      handler: function (n) {
-        this.value_ = n
-      }
+  inject:['updateForm','getForm'],
+  computed: {
+    form() {
+      return this.getForm()
     }
   },
-  data () {
-    return {
-      value_: this.value
-    }
-  }
 }

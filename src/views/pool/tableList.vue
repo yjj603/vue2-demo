@@ -103,7 +103,7 @@ export default {
     async del() {
       const ids = this.table.check.map(v => v._id)
       await this.$axios.post(`${this.$route.params.ci}/delete`, ids)
-      this.getList()
+      await this.getList()
     }
   }
 }

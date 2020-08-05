@@ -5,7 +5,7 @@
       <el-form ref="form" :inline="true" :model="form" label-width="100px" :rules="$store.state.rules">
         <el-form-item :label="item.value" v-for="(item,index) in $store.state.config[$route.params.ci].create"
                       :key="index" :prop="item.key">
-          <myComponent v-model="form" :item="item"></myComponent>
+          <component :item="item" :is="is(item)"></component>
         </el-form-item>
         <br>
         <el-form-item>
@@ -18,15 +18,13 @@
 </template>
 
 <script>
+import poolMixin from "@/views/pool/poolMixin";
+
 export default {
   name: "update",
-  data() {
-    return {
-      form: {}
-    }
-  },
+  mixins: [poolMixin],
   async created() {
-    const {data:data} = await this.$axios.get(`${this.$route.params.ci}/getOne`, {
+    const {data: data} = await this.$axios.get(`${this.$route.params.ci}/getOne`, {
       params: {
         id: this.$route.params.id
       }
@@ -52,11 +50,7 @@ export default {
           return false
         }
       })
-
     },
-    cancel() {
-      window.history.go(-1)
-    }
   }
 }
 </script>

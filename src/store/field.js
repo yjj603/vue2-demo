@@ -44,6 +44,9 @@ const state = {
         view(item) {
             return item[this.key] ? item[this.key].name : ''
         },
+        disabled(val){
+            return  !val.organization
+        }
     }
 }
 Object.entries(state).forEach(v => {

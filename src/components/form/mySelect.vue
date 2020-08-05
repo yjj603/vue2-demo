@@ -1,10 +1,10 @@
 <template>
-  <el-select v-model="value_[item.key]" filterable size="mini" clearable
+  <el-select v-model="model" filterable size="mini" clearable
              @change="()=>{
-               $emit('input',value_)
-               item.method(value_)
+               updateForm(item.key,model)
+               item.method(form)
              }" :placeholder="`请选择${item.value}`">
-    <el-option v-for="(ite,index) in item.option()"
+    <el-option v-for="(ite,index) in option"
                :key="index" :label="ite[item.params.label]"
                :value="ite[item.params.value]"></el-option>
   </el-select>
@@ -12,9 +12,28 @@
 
 <script>
 import mixin from './mixin'
+
 export default {
   name: "mySelect",
-  mixins: [mixin]
+  mixins: [mixin],
+  data() {
+    return {
+      model: ''
+    }
+  },
+  computed:{
+    option(){
+      return this.item.option()
+    }
+  },
+  watch: {
+    'form': {
+      immediate: true,
+      handler(n) {
+        this.model = n[this.item.key]
+      }
+    }
+  },
 }
 </script>
 
