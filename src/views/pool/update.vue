@@ -44,6 +44,9 @@ export default {
               type: 'success',
               offset: 70
             });
+            this.$store.dispatch('getOneOption', {
+              ci: this.$route.params.ci
+            })
             this.cancel()
           }
         } else {

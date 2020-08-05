@@ -17,6 +17,13 @@ export default {
                 let {data: {res}} = await axios.get(`${v}/get`)
                 commit(`save${v}`, res || [])
             })
+        },
+        async getOneOption({commit, state}, {ci}) {
+            if (ci in state) {
+                const {data: {res}} = await axios.get(`${ci}/get`)
+                commit(`save${ci}`, res || [])
+            }
+
         }
     },
     mutations
